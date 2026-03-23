@@ -1,13 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/styles.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Mi TODO list</h1>
-    <script src="scripts/script.js"></script>
-  </body>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Tareas</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+<div class="background-glow"></div>
+
+<main class="app-shell">
+  <section class="todo-app" aria-labelledby="app-title">
+    <header class="app-header">
+      <p class="eyebrow">Productividad inteligente</p>
+      <h1 id="app-title">Lista de Tareas</h1>
+      <p class="app-description">
+        Crea, edita, completa y administra tus tareas.
+      </p>
+    </header>
+
+    <section class="todo-panel" aria-labelledby="form-title">
+      <h2 id="form-title" class="sr-only">Agregar nueva tarea</h2>
+
+      <form id="task-form" class="task-form">
+        <label for="task-input" class="sr-only">Escribe una nueva tarea</label>
+        <input
+                id="task-input"
+                name="task"
+                type="text"
+                placeholder="Escribe una nueva tarea..."
+                maxlength="120"
+                autocomplete="off"
+                required
+        />
+        <button type="submit" class="add-btn">Agregar</button>
+      </form>
+
+      <section class="toolbar-grid" aria-label="Herramientas de gestión">
+        <div class="task-toolbar">
+          <p id="task-counter" class="task-counter">0 tareas pendientes</p>
+          <button id="clear-completed-btn" class="ghost-btn" type="button">
+            Limpiar completadas
+          </button>
+        </div>
+
+        <div class="bulk-toolbar">
+          <button id="select-all-btn" class="ghost-btn" type="button">Seleccionar todo</button>
+          <button id="clear-selection-btn" class="ghost-btn" type="button">Limpiar selección</button>
+          <button id="complete-selected-btn" class="ghost-btn" type="button">Completar seleccionadas</button>
+          <button id="uncomplete-selected-btn" class="ghost-btn" type="button">Reactivar seleccionadas</button>
+          <button id="delete-selected-btn" class="danger-btn" type="button">Eliminar seleccionadas</button>
+        </div>
+      </section>
+
+      <section class="instructions-card" aria-label="Instrucciones de uso">
+        <p><strong>Doble clic</strong> sobre una tarea para editarla.</p>
+        <p><strong>Botón Completar</strong> para marcar o reactivar.</p>
+        <p><strong>Selector lateral</strong> para acciones masivas.</p>
+      </section>
+
+      <section class="tasks-section" aria-labelledby="tasks-title">
+        <h2 id="tasks-title" class="sr-only">Lista de tareas</h2>
+        <ul id="task-list" class="task-list"></ul>
+      </section>
+    </section>
+  </section>
+</main>
+
+<template id="task-template">
+  <li class="task-item">
+    <div class="task-card">
+      <label class="select-wrapper" aria-label="Seleccionar tarea">
+        <input type="checkbox" class="task-select" />
+        <span class="select-indicator"></span>
+      </label>
+
+      <div class="task-content" tabindex="0" title="Doble clic para editar">
+        <span class="task-text"></span>
+        <label>
+          <input type="text" class="task-edit-input hidden" maxlength="120" />
+        </label>
+      </div>
+
+      <button class="complete-btn" type="button" aria-label="Marcar tarea como completada">
+        Completar
+      </button>
+
+      <button class="delete-btn" type="button" aria-label="Eliminar tarea">
+        Eliminar
+      </button>
+    </div>
+  </li>
+</template>
+
+<script src="scripts/script.js"></script>
+</body>
 </html>
